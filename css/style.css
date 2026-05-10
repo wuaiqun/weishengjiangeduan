@@ -922,101 +922,131 @@ body {
 
 /* 手机适配 (最大 768px) */
 @media (max-width: 768px) {
+    .container {
+        padding: 0 20px;
+    }
+
+    /* 导航栏优化 */
+    .navbar {
+        padding: 0;
+    }
+
+    .nav-wrapper {
+        padding: 1rem 0;
+    }
+
+    .logo-image {
+        height: 40px;
+    }
+
     .mobile-menu-toggle {
         display: flex;
+        z-index: 1001;
     }
 
     .nav-menu {
-        position: absolute;
-        top: 100%;
+        position: fixed;
+        top: 70px;
         left: 0;
         right: 0;
-        background-color: rgba(255, 255, 255, 0.98);
-        backdrop-filter: blur(10px);
+        bottom: 0;
+        background: linear-gradient(135deg, rgba(26, 26, 26, 0.98) 0%, rgba(42, 42, 42, 0.98) 100%);
+        backdrop-filter: blur(20px);
         flex-direction: column;
-        padding: 1.5rem;
-        box-shadow: var(--shadow);
+        padding: 2rem 1.5rem;
+        box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
         display: none;
         gap: 0;
+        overflow-y: auto;
+        z-index: 1000;
     }
 
     .nav-menu.active {
         display: flex;
+        animation: slideDown 0.3s ease;
+    }
+
+    @keyframes slideDown {
+        from {
+            opacity: 0;
+            transform: translateY(-20px);
+        }
+        to {
+            opacity: 1;
+            transform: translateY(0);
+        }
     }
 
     .nav-menu li {
-        padding: 1rem 0;
-        border-bottom: 1px solid var(--border-color);
+        padding: 0;
+        border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+
+    .nav-menu li a {
+        display: block;
+        padding: 1.25rem 0;
+        color: white;
+        font-size: 1.1rem;
+        letter-spacing: 2px;
     }
 
     .nav-menu li:last-child {
         border-bottom: none;
+        margin-top: 1rem;
     }
 
+    .lang-btn {
+        width: 100%;
+        padding: 1rem;
+        background-color: var(--accent-gold);
+        color: var(--bg-dark);
+        border: none;
+        font-size: 1rem;
+    }
+
+    /* 首页横幅优化 */
     .hero {
-        padding: 120px 0 80px;
-        margin-top: 80px;
+        padding: 100px 0 60px;
+        margin-top: 70px;
     }
 
     .hero-logo img {
-        height: 80px;
+        height: 70px;
+        margin-bottom: 2rem;
     }
 
     .hero-title {
-        font-size: 1.75rem;
-        letter-spacing: 4px;
+        font-size: 1.5rem;
+        letter-spacing: 2px;
+        line-height: 1.6;
+        margin-bottom: 1rem;
     }
 
     .hero-subtitle {
-        font-size: 0.85rem;
+        font-size: 0.8rem;
         letter-spacing: 1px;
-    }
-
-    .hero-buttons {
-        flex-direction: column;
-        align-items: stretch;
-        gap: 1rem;
-    }
-
-    .section-title {
-        font-size: 1.75rem;
-        letter-spacing: 2px;
-    }
-
-    .section-subtitle {
-        font-size: 0.75rem;
-        letter-spacing: 2px;
-        margin-bottom: 3rem;
-    }
-
-    .products,
-    .features,
-    .cases,
-    .about,
-    .contact {
-        padding: 60px 0;
-    }
-
-    .products-grid,
-    .features-grid,
-    .cases-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
+        margin-bottom: 2rem;
     }
 
     .hero-features {
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: 1fr;
         gap: 1rem;
         margin: 2rem 0;
     }
 
     .hero-feature-item {
-        padding: 1.5rem 1rem;
+        padding: 1.5rem;
+        display: flex;
+        align-items: center;
+        text-align: left;
+        gap: 1rem;
     }
 
     .hero-feature-icon {
         width: 50px;
         height: 50px;
+        margin: 0;
+        flex-shrink: 0;
     }
 
     .hero-feature-icon i {
@@ -1024,47 +1054,171 @@ body {
     }
 
     .hero-feature-item h3 {
-        font-size: 1.1rem;
+        font-size: 1rem;
+        margin-bottom: 0.25rem;
     }
 
     .hero-feature-item p {
+        font-size: 0.8rem;
+        opacity: 0.8;
+    }
+
+    .hero-buttons {
+        flex-direction: column;
+        align-items: stretch;
+        gap: 1rem;
+        margin-top: 2rem;
+    }
+
+    .btn {
+        padding: 1rem 2rem;
+        font-size: 0.95rem;
+    }
+
+    /* 区块标题优化 */
+    .section-title {
+        font-size: 1.75rem;
+        letter-spacing: 2px;
+        margin-bottom: 0.5rem;
+    }
+
+    .section-subtitle {
+        font-size: 0.7rem;
+        letter-spacing: 2px;
+        margin-bottom: 2.5rem;
+    }
+
+    /* 区块间距优化 */
+    .products,
+    .features,
+    .cases,
+    .about,
+    .contact,
+    .applications,
+    .customization,
+    .service-process,
+    .company-intro {
+        padding: 50px 0;
+    }
+
+    /* 产品卡片优化 */
+    .products-grid,
+    .features-grid,
+    .cases-grid,
+    .applications-grid,
+    .customization-grid {
+        grid-template-columns: 1fr;
+        gap: 1.5rem;
+    }
+
+    .product-card,
+    .case-card,
+    .application-card {
+        margin-bottom: 0;
+    }
+
+    .product-number {
+        font-size: 2rem;
+        top: 15px;
+        right: 15px;
+    }
+
+    .product-card h3,
+    .case-card h3,
+    .application-card h3 {
+        font-size: 1.25rem;
+        margin: 1.5rem 1.5rem 0.5rem;
+    }
+
+    .product-specs,
+    .application-features {
+        margin: 0 1.5rem 1.5rem;
+    }
+
+    .btn-link {
+        margin: 0 1.5rem 1.5rem;
+    }
+
+    /* 公司简介优化 */
+    .company-content {
+        grid-template-columns: 1fr;
+        gap: 2.5rem;
+    }
+
+    .company-text p {
+        font-size: 0.95rem;
+        line-height: 1.8;
+        margin-bottom: 1rem;
+    }
+
+    .company-highlights {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1rem;
+    }
+
+    .highlight-item {
+        padding: 1.5rem 1rem;
+    }
+
+    .highlight-icon {
+        width: 50px;
+        height: 50px;
+    }
+
+    .highlight-icon i {
+        font-size: 1.5rem;
+    }
+
+    .highlight-item h3 {
+        font-size: 1.25rem;
+    }
+
+    .highlight-item p {
         font-size: 0.85rem;
     }
 
-    .applications-grid,
-    .customization-grid,
-    .resources-grid {
-        grid-template-columns: 1fr;
-        gap: 2rem;
+    /* 定制化优化 */
+    .customization-item {
+        padding: 2rem 1.5rem;
     }
 
+    /* 关于我们优化 */
     .about-stats-row {
         grid-template-columns: repeat(2, 1fr);
-        gap: 2rem;
+        gap: 1.5rem;
+    }
+
+    .stat-number {
+        font-size: 2.5rem;
+    }
+
+    .stat-label {
+        font-size: 0.85rem;
     }
 
     .about-content {
         grid-template-columns: 1fr;
-        gap: 3rem;
+        gap: 2.5rem;
     }
 
     .about-image {
-        height: 300px;
+        height: 250px;
         order: -1;
     }
 
     .about-image i {
-        font-size: 5rem;
+        font-size: 4rem;
     }
 
     .about-stats {
         grid-template-columns: 1fr;
-        gap: 2rem;
+        gap: 1.5rem;
     }
 
+    /* 联系我们优化 */
     .contact-content {
         grid-template-columns: 1fr;
-        gap: 3rem;
+        gap: 2rem;
     }
 
     .contact-whatsapp {
@@ -1072,33 +1226,78 @@ body {
     }
 
     .whatsapp-card {
-        padding: 3rem 2rem;
+        padding: 2.5rem 1.5rem;
+    }
+
+    .whatsapp-icon {
+        width: 80px;
+        height: 80px;
+        margin-bottom: 1.5rem;
+    }
+
+    .whatsapp-icon i {
+        font-size: 3rem;
+    }
+
+    .whatsapp-card h3 {
+        font-size: 1.25rem;
+        margin-bottom: 1rem;
     }
 
     .whatsapp-number {
-        font-size: 1.5rem;
+        font-size: 1.35rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .btn-whatsapp {
+        padding: 1rem 2.5rem;
+        font-size: 0.95rem;
+    }
+
+    /* 页脚优化 */
+    .footer {
+        padding: 3rem 0 1.5rem;
     }
 
     .footer-content {
         grid-template-columns: 1fr;
         gap: 2rem;
+        margin-bottom: 2rem;
     }
 
+    .footer-logo {
+        height: 50px;
+    }
+
+    .footer-section h3 {
+        font-size: 0.95rem;
+        margin-bottom: 1rem;
+    }
+
+    .footer-section p,
+    .footer-section ul {
+        font-size: 0.85rem;
+    }
+
+    .footer-bottom {
+        font-size: 0.8rem;
+        padding-top: 1.5rem;
+    }
+
+    /* 返回顶部按钮 */
     .back-to-top {
-        width: 45px;
-        height: 45px;
+        width: 50px;
+        height: 50px;
         bottom: 20px;
         right: 20px;
     }
 
-    .product-number {
-        font-size: 2rem;
-        top: 20px;
-        right: 20px;
+    .back-to-top i {
+        font-size: 1.25rem;
     }
 
     .feature-number {
-        font-size: 3.5rem;
+        font-size: 3rem;
     }
 }
 
@@ -1108,27 +1307,37 @@ body {
         padding: 0 15px;
     }
 
+    /* Logo更小 */
     .logo-image {
-        height: 40px;
+        height: 35px;
     }
 
     .hero-logo img {
         height: 60px;
     }
 
+    /* 标题更紧凑 */
     .hero-title {
-        font-size: 1.5rem;
-        letter-spacing: 2px;
+        font-size: 1.25rem;
+        letter-spacing: 1px;
+        line-height: 1.5;
     }
 
     .hero-subtitle {
         font-size: 0.75rem;
+        letter-spacing: 0.5px;
     }
 
     .section-title {
         font-size: 1.5rem;
+        letter-spacing: 1px;
     }
 
+    .section-subtitle {
+        font-size: 0.65rem;
+    }
+
+    /* 核心卖点单列显示 */
     .hero-features {
         grid-template-columns: 1fr;
         gap: 1rem;
@@ -1138,41 +1347,66 @@ body {
         padding: 1.25rem 1rem;
     }
 
+    /* 统计数据单列 */
     .about-stats-row {
         grid-template-columns: 1fr;
-        gap: 1.5rem;
-    }
-
-    .customization-item,
-    .resource-card,
-    .application-card {
-        padding: 2rem 1.5rem;
-    }
-
-    .company-content {
-        grid-template-columns: 1fr;
-        gap: 3rem;
-    }
-
-    .company-highlights {
-        grid-template-columns: 1fr 1fr;
-    }
-
-    .product-card h3 {
-        font-size: 1.25rem;
+        gap: 1.25rem;
     }
 
     .stat-number {
-        font-size: 2.5rem;
+        font-size: 2.25rem;
     }
 
-    .contact-form {
-        padding: 1.5rem;
+    /* 公司亮点单列 */
+    .company-highlights {
+        grid-template-columns: 1fr;
+        gap: 1rem;
+    }
+
+    /* 卡片内边距减小 */
+    .customization-item,
+    .resource-card,
+    .application-card {
+        padding: 1.5rem 1.25rem;
+    }
+
+    .product-card h3,
+    .case-card h3 {
+        font-size: 1.15rem;
+        margin: 1.25rem 1.25rem 0.5rem;
+    }
+
+    .product-specs,
+    .application-features {
+        margin: 0 1.25rem 1.25rem;
+        font-size: 0.85rem;
+    }
+
+    .btn-link {
+        margin: 0 1.25rem 1.25rem;
+        font-size: 0.9rem;
+    }
+
+    /* 按钮更紧凑 */
+    .btn {
+        padding: 0.875rem 1.75rem;
+        font-size: 0.9rem;
+        letter-spacing: 1px;
+    }
+
+    .btn-whatsapp {
+        padding: 0.875rem 2rem;
+        font-size: 0.9rem;
+    }
+
+    /* WhatsApp卡片 */
+    .whatsapp-card {
+        padding: 2rem 1.25rem;
     }
 
     .whatsapp-icon {
-        width: 80px;
-        height: 80px;
+        width: 70px;
+        height: 70px;
     }
 
     .whatsapp-icon i {
@@ -1180,25 +1414,66 @@ body {
     }
 
     .whatsapp-card h3 {
-        font-size: 1.25rem;
+        font-size: 1.15rem;
     }
 
     .whatsapp-number {
-        font-size: 1.25rem;
+        font-size: 1.15rem;
+        letter-spacing: 1px;
     }
 
-    .btn-whatsapp {
-        padding: 1rem 2rem;
-        font-size: 0.9rem;
-    }
-
-    .btn {
-        padding: 0.875rem 2rem;
-        font-size: 0.85rem;
+    /* 页脚 */
+    .footer {
+        padding: 2.5rem 0 1.5rem;
     }
 
     .footer-logo {
-        height: 50px;
+        height: 45px;
+    }
+
+    .footer-section h3 {
+        font-size: 0.9rem;
+    }
+
+    .footer-section p,
+    .footer-section ul {
+        font-size: 0.8rem;
+    }
+
+    .footer-bottom {
+        font-size: 0.75rem;
+    }
+
+    /* 返回顶部按钮 */
+    .back-to-top {
+        width: 45px;
+        height: 45px;
+        bottom: 15px;
+        right: 15px;
+    }
+
+    .back-to-top i {
+        font-size: 1.1rem;
+    }
+
+    /* 产品编号 */
+    .product-number {
+        font-size: 1.75rem;
+        top: 12px;
+        right: 12px;
+    }
+
+    /* 案例信息 */
+    .case-info {
+        padding: 1.5rem 1.25rem;
+    }
+
+    .case-meta {
+        font-size: 0.8rem;
+    }
+
+    .case-info p {
+        font-size: 0.85rem;
     }
 }
 
